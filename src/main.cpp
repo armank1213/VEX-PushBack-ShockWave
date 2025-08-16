@@ -1,4 +1,5 @@
 #include "main.h"
+#include "EZ-Template/util.hpp"
 
 // Chassis constructor
 ez::Drive chassis(
@@ -235,21 +236,14 @@ void ez_template_extras() {
  */
 
 
-
-
 void opcontrol() {
-  // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
   while (true) {
-    // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
 
     // chassis.opcontrol_tank();  // Tank control
     chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
-    // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
-    // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
-    // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
 
     // Manual Intake + Sorting
     if (master.get_digital(DIGITAL_R1)) {
@@ -258,6 +252,10 @@ void opcontrol() {
     else if (master.get_digital(DIGITAL_R2)) {
       setIntake(-127);
     } 
+    else {
+      setIntake(0);
+    }
+    /*
     else if (master.get_digital(DIGITAL_L1)) {
       setSort(-127);
     }
@@ -268,9 +266,10 @@ void opcontrol() {
       setIntake(0);
       setSort(0);
     }
+    */
 
-    colorSort();
+    colorSort(); // Call color sorting function
 
-    pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
+    pros::delay(ez::util::DELAY_TIME*2);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }
