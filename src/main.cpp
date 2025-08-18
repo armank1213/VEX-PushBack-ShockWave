@@ -1,5 +1,6 @@
 #include "main.h"
 #include "EZ-Template/util.hpp"
+#include "pros/misc.h"
 
 // Chassis constructor
 ez::Drive chassis(
@@ -269,6 +270,11 @@ void opcontrol() {
     */
 
     colorSort(); // Call color sorting function
+
+    // Pneumatics Control
+    if (master.get_digital_new_press(DIGITAL_X)) {
+        matchLoadPiston.toggle();
+    }
 
     pros::delay(ez::util::DELAY_TIME*2);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
