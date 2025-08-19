@@ -8,8 +8,8 @@ pros::Motor sortMotor(2, pros::v5::MotorGears::green);
 pros::Vision visionSensor(4);
 
 // Color Signatures
-pros::vision_signature_s_t RED_SIG = pros::Vision::signature_from_utility(1, 9983, 11589, 10786, -1881, -831, -1356, 1.7, 0);
-pros::vision_signature_s_t BLUE_SIG = pros::Vision::signature_from_utility(1, -4321, -3569, -3945, 7301, 8501, 7901, 6.3, 0);
+pros::vision_signature_s_t RED_SIG = pros::Vision::signature_from_utility(1, 6769, 9551, 8160, -1367, -449, -908, 2.2, 0);
+pros::vision_signature_s_t BLUE_SIG = pros::Vision::signature_from_utility(2, -2357, -1645, -2001, 3473, 5173, 4323, 4.4, 0);
 
 // Pneumatics
 pros::adi::Pneumatics matchLoadPiston('H', false);

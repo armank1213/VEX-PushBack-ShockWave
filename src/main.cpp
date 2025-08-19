@@ -2,6 +2,9 @@
 #include "EZ-Template/util.hpp"
 #include "pros/misc.h"
 
+#define BLUE_SIG 1
+#define RED_SIG 2
+
 // Chassis constructor
 ez::Drive chassis(
     {-19, -20, -18},     // Left Chassis Ports 
@@ -269,7 +272,19 @@ void opcontrol() {
     }
     */
 
-    colorSort(); // Call color sorting function
+    // colorSort(); // Call color sorting function
+
+    pros::vision_object_s_t block = visionSensor.get_by_size(0);
+
+    if (block.signature == RED_SIG && block.width > 100) {
+      setSort(127);
+    }
+    else if (block.signature == BLUE_SIG && block.width > 100) {
+      setSort(-127);
+    }
+    else {
+      setSort(0);
+    }
 
     // Pneumatics Control
     if (master.get_digital_new_press(DIGITAL_X)) {
