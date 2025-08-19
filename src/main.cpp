@@ -272,19 +272,7 @@ void opcontrol() {
     }
     */
 
-    // colorSort(); // Call color sorting function
-
-    pros::vision_object_s_t block = visionSensor.get_by_size(0);
-
-    if (block.signature == RED_SIG && block.width > 100) {
-      setSort(127);
-    }
-    else if (block.signature == BLUE_SIG && block.width > 100) {
-      setSort(-127);
-    }
-    else {
-      setSort(0);
-    }
+    colorSort(); // Call color sorting function
 
     // Pneumatics Control
     if (master.get_digital_new_press(DIGITAL_X)) {

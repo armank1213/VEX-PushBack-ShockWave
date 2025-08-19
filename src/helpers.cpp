@@ -21,10 +21,10 @@ void colorSort() {
     // main method (test)
     pros::vision_object_s_t block = visionSensor.get_by_size(0);
 
-    if (block.signature == RED_SIG && block.width > 50) {
+    if (block.signature == RED_SIG && block.width > 100) {
         setSort(127);
     }
-    else if (block.signature == BLUE_SIG && block.width > 50) {
+    else if (block.signature == BLUE_SIG && block.width > 100) {
         setSort(-127);
     }
     else {
