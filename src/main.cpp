@@ -2,9 +2,6 @@
 #include "EZ-Template/util.hpp"
 #include "pros/misc.h"
 
-#define BLUE_SIG 1
-#define RED_SIG 2
-
 // Chassis constructor
 ez::Drive chassis(
     {-19, -20, -18},     // Left Chassis Ports 
@@ -249,35 +246,13 @@ void opcontrol() {
     // chassis.opcontrol_tank();  // Tank control
     chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
 
-    // Manual Intake + Sorting
-    if (master.get_digital(DIGITAL_R1)) {
-      setIntake(127);
-    }
-    else if (master.get_digital(DIGITAL_R2)) {
-      setIntake(-127);
-    } 
-    else {
-      setIntake(0);
-    }
-    /*
-    else if (master.get_digital(DIGITAL_L1)) {
-      setSort(-127);
-    }
-    else if (master.get_digital(DIGITAL_L2)) {
-      setSort(127);
-    } 
-    else {
-      setIntake(0);
-      setSort(0);
-    }
-    */
+    manIntake();  // Call manual intake control
+
+    manSort();    // Call manual sorting control
 
     colorSort(); // Call color sorting function
 
-    // Pneumatics Control
-    if (master.get_digital_new_press(DIGITAL_X)) {
-        matchLoadPiston.toggle();
-    }
+    setPiston(); // Call piston control function
 
     pros::delay(ez::util::DELAY_TIME*2);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
