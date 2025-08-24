@@ -40,7 +40,7 @@ void manSort() {
     }
 }
 
-
+// Toggle the match load piston 
 void setPiston(){
     if (master.get_digital_new_press(DIGITAL_X)) {
         matchLoadPiston.toggle();
@@ -61,53 +61,4 @@ void colorSort() {
     else {
         setSort(0);
     }
-
-    // pros::vision_object_s_t object_arr[MAX_VISION_OBJECTS];
-
-    // Sort Method 1
-    /*
-    for (int i = 0; i < MAX_VISION_OBJECTS; i++) {
-        if (object_arr[i].signature == RED_SIG) {
-            setSort(127);
-            break;
-        }
-        else if (object_arr[i].signature == BLUE_SIG) {
-            setSort(-127);
-            break;
-        }
-        else {
-            setSort(0);
-        }
-    }
-    */
-    
-    
-    // Sort Method 2
-    /*
-    pros::vision_object_s_t object_arr[MAX_VISION_OBJECTS];
-
-    if (object_arr[0].signature == RED_SIG) {
-        setSort(127);
-    }
-    else if (object_arr[0].signature == BLUE_SIG) {
-        setSort(-127);
-    }
-    else {
-        setSort(0);
-    }
-    */ 
-
-
-    // Sort Method 3
-    /*
-    if (object_arr[0].width == 150) {
-        setSort(127);
-    }
-    else if (object_arr[0].width == 150) {
-        setSort(-127);
-    }
-    else {
-        setSort(0);
-    }
-    */
 }

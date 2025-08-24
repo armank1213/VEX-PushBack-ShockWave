@@ -2,6 +2,10 @@
 #include "EZ-Template/util.hpp"
 #include "pros/misc.h"
 
+
+// Define image for LVGL
+LV_IMG_DECLARE(mhhs_shockwave);
+
 // Chassis constructor
 ez::Drive chassis(
     {-19, -20, -18},     // Left Chassis Ports 
@@ -27,6 +31,11 @@ ez::Drive chassis(
  */
 void initialize() {
   // Print our branding over your terminal :D
+
+  lv_obj_t *img = lv_img_create(lv_scr_act(), NULL);
+  lv_img_set_src(img, &mhhs_shockwave);
+  lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, 0);
+
   ez::ez_template_print();
 
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
@@ -42,7 +51,7 @@ void initialize() {
 
   // Configure your chassis controls
   chassis.opcontrol_curve_buttons_toggle(true);   // Enables modifying the controller curve with buttons on the joysticks
-  chassis.opcontrol_drive_activebrake_set(0.0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
+  chassis.opcontrol_drive_activebrake_set(2.0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
   chassis.opcontrol_curve_default_set(0.0, 0.0);  // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)
 
   // Set the drive to your own constants from autons.cpp!
@@ -54,7 +63,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-      {"Autonomous Function\n\nRuns a simple autonomous routine.", autonomous_function},
+      {"Push Back Red\n\nRuns a custom autonomous routine for Red Alliance Goal Post.", Red_Goal},
       {"Drive\n\nDrive forward and come back", drive_example},
       {"Turn\n\nTurn 3 times.", turn_example},
       {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},

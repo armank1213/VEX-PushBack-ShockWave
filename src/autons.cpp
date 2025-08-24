@@ -371,8 +371,11 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 
-void autonomous_function(){
-  chassis.pid_drive_set(24, DRIVE_SPEED);
+void Red_Goal(){
+  chassis.pid_odom_set({{12_in, 12_in}, fwd, DRIVE_SPEED});
+  chassis.pid_wait();
+
+  chassis.pid_odom_set({{12_in, 12_in, 45_deg}, fwd, DRIVE_SPEED});
   chassis.pid_wait();
 }
 
